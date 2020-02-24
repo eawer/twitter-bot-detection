@@ -1,5 +1,24 @@
-# Here you can define all your data sets by using simple YAML syntax.
-#
-# Documentation for this file format can be found in the kedro docs under `Accessing data`
-# You can access the kedro docs by running `kedro docs`
+raw_users:
+    type: JSONLocalDataSet
+    filepath: data/01_raw/users.jsonl
+    load_args:
+        multiline: True
 
+tweets:
+    type: CSVLocalDataSet
+    filepath: data/01_raw/tweets.csv
+
+
+labels:
+    type: CSVLocalDataSet
+    filepath: data/01_raw/labels.csv
+    load_args:
+        lines: True
+
+
+# users:
+#     type: kedro.contrib.io.pyspark.SparkDataSet
+#     filepath: data/01_raw/users.jsonl
+#     file_format: json
+#     load_args:
+#         multiline: True

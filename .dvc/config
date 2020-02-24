@@ -1,4 +1,5 @@
 ['remote "gs"']
 url = gs://twitter_bot_classification/
+credentialpath = conf/local/credentials-gs.json
 [core]
 remote = gs
