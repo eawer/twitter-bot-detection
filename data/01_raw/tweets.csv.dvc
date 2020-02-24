@@ -1,0 +1,7 @@
+md5: 3ecdd65d99447ed1622ee5666ac622fd
+outs:
+- md5: 813e80a27093a02c378aeb133cfd1a9d
+  path: tweets.csv
+  cache: true
+  metric: false
+  persist: false
