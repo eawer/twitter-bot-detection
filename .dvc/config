@@ -1,0 +1,4 @@
+['remote "gs"']
+url = gs://twitter_bot_classification/
+[core]
+remote = gs
