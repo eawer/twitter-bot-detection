@@ -1,7 +1,0 @@
-md5: 5393dbdf91e7a4fb5080ba1220a8489c
-outs:
-- md5: dc11a9c23c0c6f379cdfca35e08d4b14
-  path: labels.csv
-  cache: true
-  metric: false
-  persist: false
