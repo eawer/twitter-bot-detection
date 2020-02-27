@@ -1,6 +1,9 @@
 ##########################
 # KEDRO PROJECT
 
+catboost_info
+mlruns
+
 # ignore all local configuration
 conf/local/**
 !conf/local/.gitkeep
@@ -157,3 +160,5 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+/data
+/data
