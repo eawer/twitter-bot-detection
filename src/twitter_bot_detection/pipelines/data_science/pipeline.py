@@ -13,7 +13,7 @@ def create_pipeline(**kwargs):
             # ),
             node(
                 func=train_catboost,
-                inputs="user_features",
+                inputs=["X_train", "X_test", "y_train", "y_test"],
                 outputs="catboost_model",
                 name="Training catboost classifier",
             ),
