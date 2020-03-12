@@ -15,18 +15,43 @@ raw_users:
         dtype:
             id_str: str
 
+tweets:
+    type: twitter_bot_detection.io.vaex_hdf5.VaexHDF5DataSet
+    filepath: data/02_intermediate/tweets.hdf5
+
 labelled_users:
     type: PickleLocalDataSet
     filepath: data/02_intermediate/users.pkl
         
 prepared_users:
     type: PickleLocalDataSet
-    filepath: data/03_primary/users.pkl
+    filepath: data/03_primary/user.pkl
 
 user_features:
     type: PickleLocalDataSet
     filepath: data/04_features/user_features.pkl
+
+tweets_features:
+    type: PickleLocalDataSet
+    filepath: data/04_features/tweets_features.pkl
+
+X_train:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/X_train.pkl
+
+X_test:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/X_test.pkl
+
+y_train:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/y_train.pkl
+
+y_test:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/y_test.pkl
         
+
 catboost_model:
     type: PickleLocalDataSet
     filepath: data/06_models/catboost.pkl
