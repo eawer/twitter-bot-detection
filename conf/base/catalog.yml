@@ -1,52 +1,57 @@
-raw_users:
-    type: JSONLocalDataSet
-    filepath: data/01_raw/users.jsonl
-    load_args:
-        multiline: True
-
-raw_tweets:
-    type: kedro.contrib.io.pyspark.SparkDataSet
-    filepath: data/01_raw/tweets.csv
-    file_format: csv
-    save_args: 
-        mode: overwrite
-    load_args:
-        header: True
-        # schema: id StringType, user_id StringType, created_at TimestampType, source StringType, isReply BooleanType, isQuote BooleanType, hashtags ArrayType(StringType), hashtagsCount ShortType, mentions ArrayType(StringType), mentionsCount ShortType, urls ArrayType(StringType), urlsCount ShortType, symbols ArrayType(StringType), symbolsCount ShortType, sensitive BooleanType, truncated BooleanType, lang StringType, isRetweet BooleanType, text StringType, retweetedAuthor StringType, mediaCount ShortType, pollsCount ShortType, replyTo StringType, quoteOf StringType, quoteCount ShortType, replyCount ShortType, retweetCount ShortType, favoriteCount ShortType
-        # inferSchema: True
-        # enforceSchema: False
-        multiLine: True
-
-parquet_tweets:
-    type: kedro.contrib.io.pyspark.SparkDataSet
-    filepath: data/02_intermediate/tweets.parquet
-    file_format: 'parquet'
-
-raw_test:
-    type: kedro.contrib.io.pyspark.SparkDataSet
-    filepath: data/01_raw/test.csv
-    file_format: csv
-    load_args:
-        header: True
-        # schema: idx integer, name string, timestamp timestamp, text string, date string
-        # schema: idx bigint
-        inferSchema: True
-        # enforceSchema: False
-        multiLine: True
-    
-parquet_test:
-    type: kedro.contrib.io.pyspark.SparkDataSet
-    filepath: data/02_intermediate/test.parquet
-    file_format: 'parquet'
-
-# raw_tweets:
-#     type: CSVLocalDataSet
-#     filepath: data/01_raw/tweets.csv
-
-
 labels:
     type: CSVLocalDataSet
     filepath: data/01_raw/labels.csv
     load_args:
-        lines: True
+        index_col: 0
+        names: [id, label]
+        dtype:
+            id: str
 
+raw_users:
+    type: JSONDataSet
+    filepath: data/01_raw/users.jsonl
+    load_args:
+        lines: True
+        dtype:
+            id_str: str
+
+tweets:
+    type: twitter_bot_detection.io.vaex_hdf5.VaexHDF5DataSet
+    filepath: data/02_intermediate/tweets.hdf5
+
+labelled_users:
+    type: PickleLocalDataSet
+    filepath: data/02_intermediate/users.pkl
+        
+prepared_users:
+    type: PickleLocalDataSet
+    filepath: data/03_primary/user.pkl
+
+user_features:
+    type: PickleLocalDataSet
+    filepath: data/04_features/user_features.pkl
+
+tweets_features:
+    type: PickleLocalDataSet
+    filepath: data/04_features/tweets_features.pkl
+
+X_train:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/X_train.pkl
+
+X_test:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/X_test.pkl
+
+y_train:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/y_train.pkl
+
+y_test:
+    type: PickleLocalDataSet
+    filepath: data/05_model_input/y_test.pkl
+        
+
+catboost_model:
+    type: PickleLocalDataSet
+    filepath: data/06_models/catboost.pkl

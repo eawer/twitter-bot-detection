@@ -4,7 +4,8 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline
 from twitter_bot_detection.pipelines.data_engineering import pipeline as de
-# from twitter_bot_detection.pipelines import data_science as ds
+from twitter_bot_detection.pipelines.feature_engineering import pipeline as fe
+from twitter_bot_detection.pipelines.data_science import pipeline as ds
 
 
 # Here you can define your data-driven pipeline by importing your functions
@@ -25,8 +26,11 @@ from twitter_bot_detection.pipelines.data_engineering import pipeline as de
 
 def create_pipelines(**kwargs) -> Dict[str, Pipeline]:
     de_pipeline = de.create_pipeline()
+    fe_pipeline = fe.create_pipeline()
+    ds_pipeline = ds.create_pipeline()
+
     return {
         "de": de_pipeline,
-        "__default__": Pipeline([de_pipeline])
+        "ds": ds_pipeline,
+        "__default__": Pipeline([de_pipeline, fe_pipeline, ds_pipeline])
     }
-
