@@ -1,7 +1,7 @@
 ipython==7.13.0
 jupyter==1.0.0
 jupyter_client==6.0.0
-jupyterlab==2.0.1
+jupyterlab==2.2.10
 ipywidgets==7.5.1
 jupyter_contrib_nbextensions==0.5.1
 kedro==0.15.5
